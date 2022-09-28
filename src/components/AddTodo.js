@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { addTask } from "../redux/feature/taskSlice";
+import { addTask } from "../redux/feature/todo/taskSlice";
 
 const AddTodo = () => {
 	const [value, setValue] = useState('');
@@ -10,7 +10,7 @@ const AddTodo = () => {
 	const onSubmit = (event) => {
 		event.preventDefault();
 
-		if(value.trim().length === 0)
+		if(value.length === 0)
 		{
 			alert("Enter a task before adding !!");
 			setValue("");
@@ -27,19 +27,19 @@ const AddTodo = () => {
 	};
 
 	return (
-		<div className="m-[30px]">
+		<div className="m-[30px] flex flex-row flex-wrap justify-center mx-auto gap-3">
 			<input
 				type="text"
-				className="h-11 w-[300px] border border-blue-200 border-solid py-1 px-[10px] mr-2.5"
-				placeholder="Add task"
+				className="h-11 w-[300px] border border-blue-200 border-solid py-1 px-[10px]"
+				placeholder="type your task here ..."
 				value={value}
 				onChange={(event) => setValue(event.target.value)}
 			></input>
 
 			<button 
-                className="h-[49px] w-[100px] bg-[#05386b] text-white hoverpointer-events-auto"
+                className="flex justify-center mx-auto h-[49px] w-[100px] bg-[#05386b] text-white hoverpointer-events-auto items-center"
                 onClick={onSubmit}>
-				Save
+				Add
 			</button>
 		</div>
 	);

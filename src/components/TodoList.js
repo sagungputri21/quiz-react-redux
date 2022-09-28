@@ -8,11 +8,14 @@ const TodoList = () => {
 	});
 
 	return (
-		<ul className="tasks-list">
+	  <div className>
+		<hr className='border-1 border-blue-200' />
+		<ul className="tasks-list mt-7">
 			{todos.map((todo) => (
-				<TodoItem id={todo.id} title={todo.name} completed={todo.status} />
+				<TodoItem id={todo.id} title={todo.name}/>
 			))}
 		</ul>
+	  </div>
 	);
 };
 
