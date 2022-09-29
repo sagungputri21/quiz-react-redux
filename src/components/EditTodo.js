@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { addTask } from "../redux/feature/todo/taskSlice";
+import { editTask } from '../redux/feature/todo/taskSlice';
 import { useSelector } from "react-redux";
 
-const AddTodo = () => {
+const EditTodo = ({onClick}) => {
 	const [value, setValue] = useState('');
 	const dispatch = useDispatch();
 	console.log(value);
-
-	const taskAmount = useSelector((state) => state.tasks.length);
 
 	const onSubmit = (event) => {
 		event.preventDefault();
@@ -19,10 +17,8 @@ const AddTodo = () => {
 			setValue("");
 			return;
 		}
-
 		dispatch(
-			addTask({
-				id: taskAmount + 1,
+			editTask({
 				name: value
 			})
 		);
@@ -31,7 +27,8 @@ const AddTodo = () => {
 	};
 
 	return (
-		<div className="m-[30px] flex flex-row flex-wrap justify-center mx-auto gap-3">
+		<div className="m-[30px] flex flex-col justify-center mx-auto gap-3">
+            <p className='text-start'>ketikan todo yang baru</p>
 			<input
 				type="text"
 				className="h-11 w-[300px] border border-blue-200 border-solid py-1 px-[10px] rounded-md"
@@ -39,14 +36,18 @@ const AddTodo = () => {
 				value={value}
 				onChange={(event) => setValue(event.target.value)}
 			></input>
-
-			<button 
-                className="flex justify-center mx-auto h-[49px] w-[100px] bg-[#05386b] text-white hoverpointer-events-auto items-center rounded-md"
+            <div className='edit-button flex mx-auto gap-2 justify-end items-end right-0 mt-7'>
+            <button 
+                className="mx-auto h-[40px] w-[80px] bg-[#05386b] text-white items-center rounded-lg"
                 onClick={onSubmit}>
-				Add
+				Save
 			</button>
+            <button onClick={onClick} className="rounded-lg border border-blue-800 h-[40px] w-[80px] text-blue-800">
+                Close
+            </button>
+          </div>
 		</div>
 	);
 };
 
-export default AddTodo;
+export default EditTodo;
