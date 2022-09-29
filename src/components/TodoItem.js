@@ -1,38 +1,36 @@
-import React from 'react';
+import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteTask } from '../redux/feature/todo/taskSlice';
+import { deleteTask } from "../redux/feature/todo/taskSlice";
 
-const TodoItem = ({ id, title }) => {
+const TodoItem = ({ id, todo, button }) => {
+  const dispatch = useDispatch();
 
-	const dispatch = useDispatch();
+  const removeTask = () => {
+    dispatch(
+      deleteTask({
+        id: id,
+      })
+    );
+  };
 
-	const removeTask=()=>{
-		dispatch(
-			deleteTask({
-				id: id
-			})
-		)
-	}
-
-	return (
-		<li className="flex justify-between py-[8px] px-[25px] gap-12">
-			<div className=''>
-			  <p className='max-w-sm'>
-				{title}
-			  </p>
-			</div>
-			<div className='flex flex-row gap-3'>
-				<button className="bg-red-800 h-[32px] text-white border-spacing-4 w-[70px] hover:cursor-pointer" 
-                    onClick={()=>{
-					removeTask();
-				}}>Delete</button>
-				<button className="border border-indigo-500 h-[32px] border-spacing-4 w-[70px] hover:cursor-pointer" 
-                    onClick={()=>{
-					removeTask();
-				}}>Edit</button>
-			</div>
-		</li>
-	);
+  return (
+    <li className="flex justify-between py-[8px] md:px-[25px] px-[10px] md:gap-12 gap-8">
+      <div className="flex items-center">
+        <p className="max-w-sm">{todo}</p>
+      </div>
+      <div className="flex md:flex-row flex-col items-center gap-2">
+        <button
+          className="bg-red-800 h-[35px] text-white border-spacing-4 w-[70px] rounded-md hover:cursor-pointer"
+          onClick={() => {
+            removeTask();
+          }}
+        >
+          Delete
+        </button>
+        {button}
+      </div>
+    </li>
+  );
 };
 
 export default TodoItem;

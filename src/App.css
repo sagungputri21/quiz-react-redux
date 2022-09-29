@@ -49,3 +49,17 @@
     transform: rotate(360deg);
   }
 }
+
+.modal {
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 10000;
+  background-color: rgba(15, 23, 42, 0.8);
+}
+
+.edit-button {
+  justify-self: end;
+  justify-content: flex-end;
+}
